@@ -1,42 +1,108 @@
-fastlane_version "2.24.0"
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.51.0"
 
 default_platform :ios
 
 platform :ios do
-   lane :example do
-      puts("this is my first 🚀 lane")
-   end
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    cocoapods
+    
+  end
 
-   lane :ci do|options|
-branch = options[:branch]
-# 自动获取当前app版本号，并补充当前编译时间为后缀
-build_no = get_version_number + '.' + Time.new.strftime("%m%d%H%M")
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
 
-puts "Begin to run ci"
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    # match(type: "appstore") # more information: https://codesigning.guide
+    cert
+    sigh
+    gym(scheme: "JenkinsFastlaneExample") # Build your app - more options available
+    pilot
 
-# 递增build number
-increment_build_number(build_number: build_no)
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
 
-# 开始打包
-gym(
-# 是否清空以前的编译信息 true：是
-clean:true,
-# 指定打包方式，Release 或者 Debug
-configuration:"Release",
-# 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
-export_method:"development",
-# 指定输出文件夹
-output_directory:"./fastlane/build",
-)
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    # match(type: "appstore")
+    # snapshot
+    gym(scheme: "JenkinsFastlaneExample") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
 
-# 使用fir-cli上传ipa
-# 请将SDAutolayoutDemo改成你项目要打包的名称
-# 请将-T后的数字更改为在fir申请的APIToken
-sh "fir publish ./build/SDAutolayoutDemo.ipa -T 396exxxx4b88b012474fcc7c0e1xxxx"
+  # You can define as many lanes as you want
 
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+
+  lane :ci do|options|
+  branch = options[:branch]
+  # 自动获取当前app版本号，并补充当前编译时间为后缀
+  build_no = get_version_number + '.' + Time.new.strftime("%m%d%H%M")
+
+  puts "Begin to run ci"
+
+  # 递增build number
+  increment_build_number(build_number: build_no)
+
+  # 开始打包
+  cert
+  sigh
+  gym(
+  scheme: "JenkinsFastlaneExample",
+  # 是否清空以前的编译信息 true：是
+  clean:true,
+  # 指定打包方式，Release 或者 Debug
+  configuration:"Release",
+  # 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
+  export_method:"ad-hoc",
+  # 指定输出文件夹
+  output_directory:"./fastlane/build",
+  )
+
+  # 使用fir-cli上传ipa
+  # 请将SDAutolayoutDemo改成你项目要打包的名称
+  # 请将-T后的数字更改为在fir申请的APIToken
+  sh "fir publish ./build/JenkinsFastlaneExample.ipa -T 24bb65b2fce3ecca8740b918a67e0ed8"
+
+  end
+ 
 end
 
 
-end
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
 
-
+# fastlane reports which actions are used. No personal data is recorded. 
+# Learn more at https://github.com/fastlane/fastlane#metrics

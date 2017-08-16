@@ -341,7 +341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.0.08161432;
+				CURRENT_PROJECT_VERSION = 1.0.08161521;
 				DEVELOPMENT_TEAM = 8CEJM5B88V;
 				INFOPLIST_FILE = JenkinsFastlaneExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -359,7 +359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 1.0.08161432;
+				CURRENT_PROJECT_VERSION = 1.0.08161521;
 				DEVELOPMENT_TEAM = 8CEJM5B88V;
 				INFOPLIST_FILE = JenkinsFastlaneExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

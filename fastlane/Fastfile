@@ -79,23 +79,22 @@ platform :ios do
   increment_build_number(build_number: build_no)
 
   # 开始打包
-  match(clone_branch_directly:true,
-        type: "adhoc")
+  match(clone_branch_directly:true)
   sigh
   gym(
   scheme: "JenkinsFastlaneExample",
   # 是否清空以前的编译信息 true：是
   clean:true,
   # 指定打包方式，Release 或者 Debug
-  configuration:”Debug”,
+  configuration:”Release”,
   # 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
-  export_method:”development”,
+  export_method:”ad-hoc”,
   # 指定输出文件夹
   output_directory:"./fastlane/build",
   )
 
   # 使用fir-cli上传ipa
-  # 请将SDAutolayoutDemo改成你项目要打包的名称
+
   # 请将-T后的数字更改为在fir申请的APIToken
   sh "fir publish ./build/JenkinsFastlaneExample.ipa -T 24bb65b2fce3ecca8740b918a67e0ed8"
 

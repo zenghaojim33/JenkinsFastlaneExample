@@ -5,52 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.001087">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.001053">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000817">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000896">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: cocoapods" time="1.232337">
+      <testcase classname="fastlane.lanes" name="2: update_fastlane" time="7.546995">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: get_version_number" time="0.613534">
+      <testcase classname="fastlane.lanes" name="3: cocoapods" time="2.478671">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: increment_build_number" time="1.839968">
+      <testcase classname="fastlane.lanes" name="4: get_version_number" time="0.790362">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: match" time="11.480097">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="2.219915">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: cert" time="3.831241">
+      <testcase classname="fastlane.lanes" name="6: match" time="24.185744">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: sigh" time="10.663397">
+      <testcase classname="fastlane.lanes" name="7: sigh" time="7.650397">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: gym" time="27.170724">
+      <testcase classname="fastlane.lanes" name="8: gym" time="17.899067">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: fir publish ./build/JenkinsFastlaneExample.ipa -T 24bb65b2fce3ecca8740b918a67e0ed8" time="18.289463">
+      <testcase classname="fastlane.lanes" name="9: fir publish ./build/JenkinsFastlaneExample.ipa -T 24bb65b2fce3ecca8740b918a67e0ed8" time="63.521848">
         
       </testcase>
     

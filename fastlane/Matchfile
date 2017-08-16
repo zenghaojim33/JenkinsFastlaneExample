@@ -1,9 +1,9 @@
-git_url "git@github.com:zenghaojim33/Zoeker-Cert.git"
+git_url "https://github.com/zenghaojim33/Zoeker-Cert.git"
 
 type "development" # The default type, can be: appstore, adhoc, enterprise or development
 
  app_identifier ["com.cherrmann.JenkinsFastlaneExample-zoeker"]
  username "492773201@qq.com” # Your Apple Developer Portal username
- clone_branch_directly
+
 # For all available options run `fastlane match --help`
 # Remove the # in the beginning of the line to enable the other options
